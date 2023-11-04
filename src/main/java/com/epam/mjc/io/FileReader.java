@@ -34,6 +34,8 @@ public class FileReader {
                         case "Phone":
                             phone = Long.parseLong(value);
                             break;
+                        default:
+                            name = value;
                     }
                 }
             }
