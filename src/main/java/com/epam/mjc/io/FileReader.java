@@ -44,6 +44,8 @@ public class FileReader {
                     }
                 }
             }
+            return new Profile(name, age, email, phone);
+
         } catch (IOException e) {
             logger.severe(e.getMessage());
         }
