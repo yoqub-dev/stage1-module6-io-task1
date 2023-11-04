@@ -3,12 +3,17 @@ package com.epam.mjc.io;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 
 public class FileReader {
 
     public Profile getDataFromFile(File file) {
-        try (BufferedReader reader = new BufferedReader(new java.io.FileReader(file));) {
+
+        final Logger LOGGER = Logger.getLogger(FileReader.class.getName());
+
+        try (BufferedReader reader = new BufferedReader(new java.io.FileReader(file))) {
+
             String line;
             String name = null;
             Integer age = null;
@@ -46,9 +51,8 @@ public class FileReader {
                 throw new IllegalArgumentException("Invalid data in the file");
             }
         } catch (IOException e) {
-            System.err.println(e);
+            LOGGER.severe(e.getMessage());
         }
-
         return null;
     }
 }
