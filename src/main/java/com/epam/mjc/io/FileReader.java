@@ -44,7 +44,7 @@ public class FileReader {
                 throw new IllegalArgumentException("Invalid data in the file");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println(e);
         }
 
         return null;
