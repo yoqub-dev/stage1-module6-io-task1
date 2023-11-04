@@ -10,7 +10,7 @@ public class FileReader {
 
     public Profile getDataFromFile(File file) {
 
-        final Logger LOGGER = Logger.getLogger(FileReader.class.getName());
+        final Logger logger = Logger.getLogger(FileReader.class.getName());
 
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(file))) {
 
@@ -44,14 +44,8 @@ public class FileReader {
                     }
                 }
             }
-
-            if (name != null && age != null && email != null && phone != null) {
-                return new Profile(name, age, email, phone);
-            } else {
-                throw new IllegalArgumentException("Invalid data in the file");
-            }
         } catch (IOException e) {
-            LOGGER.severe(e.getMessage());
+            logger.severe(e.getMessage());
         }
         return null;
     }
