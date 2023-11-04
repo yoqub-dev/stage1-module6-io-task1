@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class FileReader {
 
-    public Profile getDataFromFile(File file) throws IOException {
+    public Profile getDataFromFile(File file) {
         try (BufferedReader reader = new BufferedReader(new java.io.FileReader(file));) {
             String line;
             String name = null;
@@ -21,14 +21,19 @@ public class FileReader {
                     String key = keyValue[0].trim();
                     String value = keyValue[1].trim();
 
-                    if ("Name".equals(key)) {
-                        name = value;
-                    } else if ("Age".equals(key)) {
-                        age = Integer.parseInt(value);
-                    } else if ("Email".equals(key)) {
-                        email = value;
-                    } else if ("Phone".equals(key)) {
-                        phone = Long.parseLong(value);
+                    switch (key) {
+                        case "Name":
+                            name = value;
+                            break;
+                        case "Age":
+                            age = Integer.parseInt(value);
+                            break;
+                        case "Email":
+                            email = value;
+                            break;
+                        case "Phone":
+                            phone = Long.parseLong(value);
+                            break;
                     }
                 }
             }
@@ -38,7 +43,7 @@ public class FileReader {
             } else {
                 throw new IllegalArgumentException("Invalid data in the file");
             }
-        } catch (IOException | NumberFormatException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
